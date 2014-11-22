@@ -17,10 +17,14 @@ import com.google.android.gms.wearable.WearableListenerService;
 
 public class MainActivity extends Activity {
 
+    DBConnection db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        db = new DBConnection(this);
+        db.addThreshold(78);
         final Button button = (Button) findViewById(R.id.button_notify);
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -59,6 +63,12 @@ public class MainActivity extends Activity {
 
             }
         });
+    }
+
+
+    public void testSqliteDB(View view)
+    {
+       db.getThreshold();
     }
 
 }

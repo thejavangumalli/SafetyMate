@@ -15,4 +15,14 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test SQLite DB"
+        android:id="@+id/button"
+        android:layout_above="@+id/button_notify"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="42dp"
+        android:onClick="testSqliteDB"/>
+
 </RelativeLayout>
