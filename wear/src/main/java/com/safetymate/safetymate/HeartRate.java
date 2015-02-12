@@ -20,7 +20,7 @@ public class HeartRate extends Activity implements SensorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_heart_rate);
-        final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stub);
+        final WatchViewStub stub = (WatchViewStub) findViewById(R.id.watch_view_stubnew);
         stub.setOnLayoutInflatedListener(new WatchViewStub.OnLayoutInflatedListener() {
             @Override
             public void onLayoutInflated(WatchViewStub stub) {
@@ -36,7 +36,7 @@ public class HeartRate extends Activity implements SensorEventListener {
         super.onResume();
         //Register the listener
         if (mSensorManager != null){
-            mSensorManager.registerListener(this, mHeartRateSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            mSensorManager.registerListener(this, mHeartRateSensor, 2);
         }
     }
 
@@ -50,6 +50,7 @@ public class HeartRate extends Activity implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        System.out.print("On Sensor Changed"+event.values[0]);
     //Update your data. This check is very raw. You should improve it when the sensor is unable to calculate the heart rate
         if (event.sensor.getType() == Sensor.TYPE_HEART_RATE) {
             if ((int)event.values[0]>0) {
