@@ -7,17 +7,26 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
-            android:name="com.safetymate.safetymate.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".CancelAlert"/>
+
         <uses-feature android:name="android.hardware.type.watch" />
+
+        <uses-permission android:name="android.permission.VIBRATE" />
+
         <uses-permission android:name="android.permission.BODY_SENSORS" />
-        <service android:name=".WearService">
+
+        <service android:name=".WearService" >
             <intent-filter>
                 <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
             </intent-filter>

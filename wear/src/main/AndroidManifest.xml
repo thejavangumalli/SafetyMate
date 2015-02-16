@@ -19,10 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.safetymate.safetymate.HeartRate"
-            android:label="@string/title_activity_heart_rate" >
-        </activity>
     </application>
 
 </manifest>
