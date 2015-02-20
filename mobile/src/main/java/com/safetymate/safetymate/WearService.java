@@ -6,11 +6,12 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.WearableListenerService;
 
 public class WearService extends WearableListenerService {
-    Alert alert;
+    NotifyWatch notifyWatch;
+    ActivityDetector activityDetector;
     @Override
     public void onCreate() {
         super.onCreate();
-        alert = new Alert(getApplicationContext());
+        notifyWatch = new NotifyWatch();
     }
 
     @Override
@@ -27,9 +28,13 @@ public class WearService extends WearableListenerService {
     public void onMessageReceived(MessageEvent messageEvent) {
         super.onMessageReceived(messageEvent);
         Log.i(WearService.class.getSimpleName(), "heartrate received " + messageEvent.getPath());
-        if(Float.parseFloat(messageEvent.getPath()) > 75)
+        float heartRate =  Float.parseFloat(messageEvent.getPath());
+        if(heartRate > 60)
         {
-            alert.sendNotification();
+            SafetyMate.setHeartRate(heartRate);
+            activityDetector  = new ActivityDetector();
+            SafetyMate.setActivityDetector(activityDetector);
+            activityDetector.startActivityDetection();
         }
     }
 

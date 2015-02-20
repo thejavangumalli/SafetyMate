@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
 
             }
         });*/
+        SafetyMate.setContext(this);
     }
 
 

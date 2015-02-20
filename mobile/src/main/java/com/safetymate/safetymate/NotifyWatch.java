@@ -8,19 +8,21 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.WearableExtender;
 import android.support.v4.app.NotificationManagerCompat;
 
-/**
- * Created by RockerZ on 2/11/15.
- */
-public class Alert{
-    Context context;
-    public Alert(Context context)
-    {
-        this.context = context;
-    }
-    public void sendNotification(){
+import com.google.android.gms.location.DetectedActivity;
+
+import java.util.Timer;
+
+public class NotifyWatch {
+
+    public void sendNotification(DetectedActivity userActivity){
+        SafetyMate.getActivityDetector().StopDetection();
+        Context context= SafetyMate.getContext();
+        SafetyMate.setNotificationState(true);
+        SafetyMate.setUserActivity(userActivity);
+        //TODO Send alerts based on the activity
         int notificationId = 001;
         // Create an intent for the cancel action
-        Intent actionIntent = new Intent(this.context, CancelAlert.class);
+        Intent actionIntent = new Intent(context, CancelAlert.class);
         actionIntent.putExtra("notificationId",notificationId);
         PendingIntent actionPendingIntent =
                 PendingIntent.getBroadcast(context, 0, actionIntent,
@@ -34,7 +36,7 @@ public class Alert{
 
         // Build the notification and add the action via WearableExtender
         Notification notification =
-                new NotificationCompat.Builder(this.context)
+                new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.danger)
                         .setContentTitle("Safety Mate")
                         .setContentText("Are you in Danger? Swipe right to stop sending notification")
@@ -42,18 +44,21 @@ public class Alert{
                         .setVibrate(pattern)
                         .setAutoCancel(true)
                         .setContentIntent(PendingIntent.getActivity(
-                                                        this.context,
-                                                        0,
-                                                        new Intent(this.context,MainActivity.class),
-                                                        PendingIntent.FLAG_UPDATE_CURRENT))
+                                context,
+                                0,
+                                new Intent(context,MainActivity.class),
+                                PendingIntent.FLAG_UPDATE_CURRENT))
                         .setPriority(2) // high priority
                         .setVisibility(1) //public visibility
                         .build();
         // Get an instance of the NotificationManager service
         NotificationManagerCompat notificationManager =
-                NotificationManagerCompat.from(this.context);
+                NotificationManagerCompat.from(context);
 
         // Issue the notification with notification manager.
         notificationManager.notify(notificationId, notification);
+        //TODO once notification is sent wait for few minutes before sending out other notification
+        Timer timer = new Timer();
+        timer.schedule(new SendAlert(notificationId),15*1000);
     }
 }

@@ -16,5 +16,6 @@ public class CancelAlert extends BroadcastReceiver {
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.cancel(notificationId);
         Log.i("Notification Id",""+notificationId);
+        //TODO Store values in the database. Get DetectedActivity and heartrate from SafetyMate class
     }
 }
