@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.safetymate.safetymate" >
+    package="com.sjsu.demo.safetymatedemo" >
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
     <uses-permission android:name="android.permission.BODY_SENSORS" />
-
     <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name=".MainActivity"
@@ -23,8 +27,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".EmergencyContacts"
+            android:label="@string/title_activity_emergency_contacts"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sjsu.demo.safetymatedemo.MainActivity" />
+        </activity>
 
-        <receiver android:name=".CancelAlert"/>
+        <service
+            android:name=".SendAlertService"
+            android:exported="false" >
+        </service>
+
+        <activity
+            android:name=".LaunchSettings"
+            android:label="@string/title_activity_launch_settings"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.sjsu.demo.safetymatedemo.MainActivity" />
+        </activity>
+
+        <receiver android:name=".CancelAlert" />
 
         <uses-feature android:name="android.hardware.type.watch" />
 
@@ -33,8 +59,7 @@
                 <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
             </intent-filter>
         </service>
-
-        <service android:name=".ActivityDetectorService"></service>
+        <service android:name=".ActivityDetectorService" />
     </application>
 
 </manifest>

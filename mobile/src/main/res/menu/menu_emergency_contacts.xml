@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.sjsu.demo.safetymatedemo.EmergencyContacts">
+
+
+    <item android:id="@+id/action_new"
+        android:icon="@mipmap/ic_action_new"
+        android:title="Add Contact"
+        app:showAsAction="ifRoom|withText"/>
+</menu>

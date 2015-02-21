@@ -1,0 +1,34 @@
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Personal Information" >
+        <EditTextPreference
+            android:title="Height"
+            android:summary="Enter your height"
+            android:key="prefUserHeight"/>
+        <EditTextPreference
+            android:title="Weight"
+            android:summary="Enter your weight"
+            android:key="prefUserWeight"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Social Media Integration Settings" >
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="prefFacebookPost"
+            android:summary="Enable Facebook integration"
+            android:title="Facebook" >
+        </CheckBoxPreference>
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="prefTwitterPost"
+            android:summary="Enable Twitter integration"
+            android:title="Twitter" >
+        </CheckBoxPreference>
+
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
