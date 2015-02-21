@@ -8,9 +8,6 @@ import com.google.android.gms.location.DetectedActivity;
 
 import java.util.List;
 
-/**
- * Created by RockerZ on 2/16/15.
- */
 public class ActivityDetectorService extends IntentService {
     NotifyWatch notifyWatch;
 

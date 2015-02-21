@@ -25,8 +25,6 @@ public class MainActivity extends Activity implements
         GoogleApiClient.ConnectionCallbacks,
         MessageApi.MessageListener
 {
-
-    private TextView mTextView;
     SensorManager mSensorManager;
     Sensor mHeartRateSensor;
     private static float heartrate = 0;
@@ -56,7 +54,7 @@ public class MainActivity extends Activity implements
     public void onResume(){
         super.onResume();
         mHeartRateSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE);
-        mSensorManager.registerListener(this, mHeartRateSensor, 10000000);
+        mSensorManager.registerListener(this, mHeartRateSensor, 10*000000);
     }
 
     @Override

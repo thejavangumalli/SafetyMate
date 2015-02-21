@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 
-/**
- * Created by RockerZ on 2/14/15.
- */
 public class CancelAlert extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
